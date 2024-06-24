@@ -1,0 +1,27 @@
+---
+s3:
+  url: "http://minio-svc.minio.svc.cluster.local:9000"
+  accessKey: "your_access_key"
+  secretKey: "your_secret_key"
+  api: "s3v4"
+  path: "auto"
+  prefix: "notebook-output/redhat_dog"
+  modelBucket: "models"
+  bucket_list:
+      - "models"
+      - "pipelines"
+      - "trainingdata"
+
+training:
+  basePath: "notebook-output"
+  model_name: "stabilityai/stable-diffusion-2-1"
+  output_dir: "notebook-output/stable_diffusion_weights/redhat-dog"
+  data_dir: "notebook-output/data"
+  training_data_url: "https://rhods-public.s3.amazonaws.com/sample-data/images/redhat-dog.tar.gz"
+  training_dir: "training_dir"
+  class_dir: "class_dir"
+  training_prompt: "photo of a rhteddy dog"
+  class_prompt: "a photo of dog"
+  num_class_images: "200"
+  max_train_steps: "800"
+
