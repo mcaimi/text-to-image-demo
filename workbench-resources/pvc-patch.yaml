@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: persistent-storage
+  annotations:
+    openshift.io/description: "Jupyter Persistent Storage"
+    openshift.io/display-name: persistent-storage
+  labels:
+    opendatahub.io/dashboard: "true"

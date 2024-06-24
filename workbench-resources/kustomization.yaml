@@ -1,0 +1,22 @@
+---
+namespace: stable-diffusion
+
+resources:
+  - persistent-storage.yaml
+
+secretGenerator:
+- name: data-connection-minio
+  literals:
+    - AWS_ACCESS_KEY_ID="your_access_key"
+    - AWS_SECRET_ACCESS_KEY="your_secret_key"
+    - AWS_DEFAULT_REGION="us"
+    - AWS_S3_ENDPOINT="http://minio-svc.minio.svc.cluster.local:9000"
+    - AWS_S3_BUCKET="models"
+
+patches:
+  - path: data-connection-patch.yaml
+    target:
+      kind: Secret
+  - path: pvc-patch.yaml
+    target:
+      kind: PersistentVolumeClaim
