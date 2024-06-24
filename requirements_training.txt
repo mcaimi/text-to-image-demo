@@ -1,0 +1,7 @@
+boto3
+torch
+transformers
+accelerate
+xformers
+bitsandbytes
+git+https://github.com/huggingface/diffusers
