@@ -1,9 +1,0 @@
-{
-  "instances": [
-    {
-      "prompt": "photo of the beach",
-      "negative_prompt": "ugly, deformed, bad anatomy",
-      "num_inference_steps": 60
-    }
-  ]
-}
