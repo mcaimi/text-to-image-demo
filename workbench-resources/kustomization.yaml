@@ -3,6 +3,7 @@ namespace: stable-diffusion
 
 resources:
   - persistent-storage.yaml
+  - serving-runtime.yaml
 
 secretGenerator:
 - name: data-connection-minio
