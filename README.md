@@ -22,3 +22,9 @@ This demo requires:
 4. Clone this repo in the Workbench, update the parameters.yaml file according to the requirements.
 5. Create a pipeline server using the `Pipeline Artifacts` data connection.
 6. Run the pipelines or individual notebooks.
+
+## Important
+
+It is possible that the KServe component of RHOAI is disabled (i.e. single model serving option is grayed out).
+In this case follow the documentation [here](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.10/html/serving_models/serving-large-models_serving-large-models#configuring-automated-installation-of-kserve_serving-large-models) to properly enable the feature.
+
