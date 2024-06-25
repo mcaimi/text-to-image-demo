@@ -22,28 +22,7 @@
               "outputs": [],
               "env_vars": [
                 {
-                  "env_var": "VERSION"
-                },
-                {
-                  "env_var": "MODEL_NAME"
-                },
-                {
                   "env_var": "INSTANCE_DATA_URL"
-                },
-                {
-                  "env_var": "INSTANCE_PROMPT"
-                },
-                {
-                  "env_var": "CLASS_PROMPT"
-                },
-                {
-                  "env_var": "NUM_CLASS_IMAGES"
-                },
-                {
-                  "env_var": "MAX_TRAIN_STEPS"
-                },
-                {
-                  "env_var": "GPU_ONNX_EXPORT"
                 }
               ],
               "kubernetes_pod_annotations": [],
@@ -58,14 +37,15 @@
                   "read_only": false
                 }
               ],
-              "filename": "get_data.ipynb"
+              "filename": "get_data.ipynb",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d"
             },
-            "label": "",
+            "label": "Prepare Training Data",
             "ui_data": {
-              "label": "get_data.ipynb",
-              "image": "/notebook/image-gen/image-generation/static/elyra/notebook.svg",
-              "x_pos": 87,
-              "y_pos": 294,
+              "label": "Prepare Training Data",
+              "image": "/notebook/stable-diffusion/text-to-image-demo/static/elyra/notebook.svg",
+              "x_pos": 138,
+              "y_pos": 361,
               "description": "Run notebook file"
             }
           },
@@ -111,10 +91,7 @@
                 "class_prompt",
                 "model_name"
               ],
-              "dependencies": [
-                "requirements.txt",
-                "train_dreambooth.py"
-              ],
+              "dependencies": [],
               "include_subdirectories": false,
               "outputs": [],
               "env_vars": [],
@@ -142,14 +119,15 @@
               "cpu": 4,
               "cpu_limit": 12,
               "memory_limit": 48,
-              "memory": 12
+              "memory": 12,
+              "runtime_image": "quay.io/modh/runtime-images@sha256:ef9cc4f0dc1c0dff82c8bcdee295a5c8b8c19d297844fc209316ace315c79982"
             },
-            "label": "",
+            "label": "Run Training",
             "ui_data": {
-              "label": "train.ipynb",
-              "image": "/notebook/image-gen/image-generation/static/elyra/notebook.svg",
-              "x_pos": 351,
-              "y_pos": 293,
+              "label": "Run Training",
+              "image": "/notebook/stable-diffusion/text-to-image-demo/static/elyra/notebook.svg",
+              "x_pos": 512,
+              "y_pos": 271,
               "description": "Run notebook file"
             }
           },
@@ -196,7 +174,7 @@
           "app_data": {
             "component_parameters": {
               "pipeline_parameters": [
-                "aws_s3_prefix"
+                "s3_prefix"
               ],
               "dependencies": [],
               "include_subdirectories": false,
@@ -206,29 +184,29 @@
               "kubernetes_pod_labels": [],
               "kubernetes_secrets": [
                 {
-                  "env_var": "AWS_ACCESS_KEY_ID",
-                  "name": "aws-connection-my-storage",
-                  "key": "AWS_ACCESS_KEY_ID"
+                  "env_var": "ACCESS_KEY_ID",
+                  "name": "connection-my-storage",
+                  "key": "ACCESS_KEY_ID"
                 },
                 {
-                  "env_var": "AWS_SECRET_ACCESS_KEY",
-                  "name": "aws-connection-my-storage",
-                  "key": "AWS_SECRET_ACCESS_KEY"
+                  "env_var": "SECRET_ACCESS_KEY",
+                  "name": "connection-my-storage",
+                  "key": "SECRET_ACCESS_KEY"
                 },
                 {
-                  "env_var": "AWS_S3_ENDPOINT",
-                  "name": "aws-connection-my-storage",
-                  "key": "AWS_S3_ENDPOINT"
+                  "env_var": "S3_ENDPOINT",
+                  "name": "connection-my-storage",
+                  "key": "S3_ENDPOINT"
                 },
                 {
-                  "env_var": "AWS_DEFAULT_REGION",
-                  "name": "aws-connection-my-storage",
-                  "key": "AWS_DEFAULT_REGION"
+                  "env_var": "DEFAULT_REGION",
+                  "name": "connection-my-storage",
+                  "key": "DEFAULT_REGION"
                 },
                 {
-                  "env_var": "AWS_S3_BUCKET",
-                  "name": "aws-connection-my-storage",
-                  "key": "AWS_S3_BUCKET"
+                  "env_var": "S3_BUCKET",
+                  "name": "connection-my-storage",
+                  "key": "S3_BUCKET"
                 }
               ],
               "kubernetes_shared_mem_size": {},
@@ -240,14 +218,15 @@
                   "read_only": false
                 }
               ],
-              "filename": "upload.ipynb"
+              "filename": "upload.ipynb",
+              "runtime_image": "quay.io/modh/runtime-images@sha256:de57a9c7bd6a870697d27ba0af4e3ee5dc2a2ab05f46885791bce2bffb77342d"
             },
-            "label": "",
+            "label": "Upload Model to S3",
             "ui_data": {
-              "label": "upload.ipynb",
-              "image": "/notebook/image-gen/image-generation/static/elyra/notebook.svg",
-              "x_pos": 601,
-              "y_pos": 293,
+              "label": "Upload Model to S3",
+              "image": "/notebook/stable-diffusion/text-to-image-demo/static/elyra/notebook.svg",
+              "x_pos": 887,
+              "y_pos": 318,
               "description": "Run notebook file"
             }
           },
@@ -290,26 +269,69 @@
       ],
       "app_data": {
         "ui_data": {
-          "comments": []
+          "comments": [
+            {
+              "id": "80ae57a5-8cae-4196-b5e7-0f56fd070861",
+              "x_pos": 441.0000305175781,
+              "y_pos": 507,
+              "width": 250,
+              "height": 144,
+              "content": "## Training Phase\n\n* Uses Dreambooth from HuggingFace (downloaded on-the-fly\n* Saves the updated weights locally\n\n",
+              "associated_id_refs": [
+                {
+                  "id": "44a6bae3-3fdd-4b91-b4ae-18043e3b1cee",
+                  "node_ref": "7d6cb2ba-616a-40bd-835f-dda47b90c44b"
+                }
+              ]
+            },
+            {
+              "id": "0d8b1987-ede4-4f09-b251-bfcfb6d13bdb",
+              "x_pos": 56,
+              "y_pos": 110,
+              "width": 269,
+              "height": 115,
+              "content": "## Preparation Phase\n\n* Downloads training data from the internet\n* Decompresses archive locally",
+              "associated_id_refs": [
+                {
+                  "id": "2e589297-8774-4eaa-810b-90f43a5b8763",
+                  "node_ref": "125e4c00-04f4-4a80-a6bd-928cf3e7d669"
+                }
+              ]
+            },
+            {
+              "id": "951fb30c-8c36-4480-8d2a-72d21cf2475d",
+              "x_pos": 921.0000305175781,
+              "y_pos": 39,
+              "width": 175,
+              "height": 169,
+              "content": "## Upload Phase\n\n* Takes the updated weights and uploads the model to an S3 bucket for deployment in production",
+              "associated_id_refs": [
+                {
+                  "id": "bd23f172-4f36-4b99-ab4a-37900ad84f66",
+                  "node_ref": "761e6892-1df5-4039-a7b6-03814a6d2932"
+                }
+              ]
+            }
+          ]
         },
         "version": 8,
         "runtime_type": "KUBEFLOW_PIPELINES",
         "properties": {
-          "name": "Dreambooth",
+          "name": "stable-diffusion-finetuning",
           "runtime": "Data Science Pipelines",
           "pipeline_defaults": {
-            "kubernetes_pod_annotations": [],
-            "kubernetes_pod_labels": [],
-            "mounted_volumes": [],
             "kubernetes_tolerations": [],
+            "mounted_volumes": [],
+            "kubernetes_pod_labels": [],
+            "kubernetes_pod_annotations": [],
             "kubernetes_shared_mem_size": {},
+            "kubernetes_secrets": [],
             "env_vars": [
               {
                 "env_var": "WORKING_DIR",
                 "value": "/opt/app-root/src/pipelines-pvc"
               }
             ],
-            "kubernetes_secrets": [],
             "runtime_image": "quay.io/modh/runtime-images@sha256:8a498803e4d605f20427fdb4814479ea5b51b4eb14010d181badd4f49cc72d88"
           },
           "pipeline_parameters": [
@@ -359,11 +381,11 @@
               "required": false
             },
             {
-              "name": "aws_s3_prefix",
+              "name": "s3_prefix",
               "description": "folder/prefix to for uploaded artifacts",
               "default_value": {
                 "type": "String",
-                "value": "text-to-image/stable_diffusion_weights"
+                "value": "models/notebook-output"
               },
               "required": false
             },
@@ -372,7 +394,7 @@
               "description": "hugginface model name ",
               "default_value": {
                 "type": "String",
-                "value": "runwayml/stable-diffusion-v1-5"
+                "value": "stabilityai/stable-diffusion-2-1"
               },
               "required": false
             }
