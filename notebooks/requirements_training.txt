@@ -1,5 +1,5 @@
 boto3
-torch
+torch==2.2.2
 transformers
 accelerate
 xformers
