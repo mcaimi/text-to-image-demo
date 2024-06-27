@@ -43,7 +43,7 @@
             "label": "Prepare Training Data",
             "ui_data": {
               "label": "Prepare Training Data",
-              "image": "/notebook/stable-diffusion/text-to-image-demo/static/elyra/notebook.svg",
+              "image": "/notebook/stable-diffusion/stable-diffusion/static/elyra/notebook.svg",
               "x_pos": 138,
               "y_pos": 361,
               "description": "Run notebook file"
@@ -125,7 +125,7 @@
             "label": "Run Training",
             "ui_data": {
               "label": "Run Training",
-              "image": "/notebook/stable-diffusion/text-to-image-demo/static/elyra/notebook.svg",
+              "image": "/notebook/stable-diffusion/stable-diffusion/static/elyra/notebook.svg",
               "x_pos": 512,
               "y_pos": 271,
               "description": "Run notebook file"
@@ -185,27 +185,27 @@
               "kubernetes_secrets": [
                 {
                   "env_var": "ACCESS_KEY_ID",
-                  "name": "connection-my-storage",
+                  "name": "pipeline-s3-credentials",
                   "key": "ACCESS_KEY_ID"
                 },
                 {
                   "env_var": "SECRET_ACCESS_KEY",
-                  "name": "connection-my-storage",
+                  "name": "pipeline-s3-credentials",
                   "key": "SECRET_ACCESS_KEY"
                 },
                 {
                   "env_var": "S3_ENDPOINT",
-                  "name": "connection-my-storage",
+                  "name": "pipeline-s3-credentials",
                   "key": "S3_ENDPOINT"
                 },
                 {
                   "env_var": "DEFAULT_REGION",
-                  "name": "connection-my-storage",
+                  "name": "pipeline-s3-credentials",
                   "key": "DEFAULT_REGION"
                 },
                 {
                   "env_var": "S3_BUCKET",
-                  "name": "connection-my-storage",
+                  "name": "pipeline-s3-credentials",
                   "key": "S3_BUCKET"
                 }
               ],
@@ -224,7 +224,7 @@
             "label": "Upload Model to S3",
             "ui_data": {
               "label": "Upload Model to S3",
-              "image": "/notebook/stable-diffusion/text-to-image-demo/static/elyra/notebook.svg",
+              "image": "/notebook/stable-diffusion/stable-diffusion/static/elyra/notebook.svg",
               "x_pos": 887,
               "y_pos": 318,
               "description": "Run notebook file"
