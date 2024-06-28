@@ -7,6 +7,7 @@ s3:
   path: "auto"
   prefix: "notebook-output/redhat_dog"
   modelBucket: "models"
+  region: "us"
   bucket_list:
       - "models"
       - "pipelines"
