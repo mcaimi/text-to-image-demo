@@ -4,4 +4,5 @@ transformers
 accelerate
 xformers
 bitsandbytes
+ipywidgets
 git+https://github.com/huggingface/diffusers
