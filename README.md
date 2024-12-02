@@ -23,6 +23,38 @@ This demo requires:
 5. Create a pipeline server using the `Pipeline Artifacts` data connection.
 6. Run the pipelines or individual notebooks.
 
+## Demo Deployment
+
+### Deploy the Inference Service
+
+Deploy the Inference Server using the custom ServingRuntime based in KServe. Either via the RHOAI Console or using the provided Kustomization template:
+
+```bash
+# Provide the data connection name and the path inside the s3 bucket
+$ cat data-connection-patch.yaml
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: sd-kserve
+spec:
+  predictor:
+     storage:
+        key: minio-data-connection-name  # Change this
+        path: model_path_at_s3_endpoint  # Change this
+
+# deploy
+$ oc apply -k components/inference
+```
+
+### Deploy the frontend application
+
+Just use the Openshift Console or the command line:
+
+```bash
+$ oc new-app --name sd-frontend --image=quay.io/marcocaimi/stable-diffusion-frontend:latest --env=INFER_URL="$(oc get isvc sd-kserve -ojsonpath='{.status.url}')"
+$ oc expose service/sd-frontend
+```
+
 ## Important
 
 It is possible that the KServe component of RHOAI is disabled (i.e. single model serving option is grayed out).

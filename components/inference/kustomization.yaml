@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: stable-diffusion
+
+labels:
+- includeSelectors: true
+  pairs:
+    networking.knative.dev/visibility: cluster-local
+    opendatahub.io/dashboard: "true"
+
+commonAnnotations:
+  openshift.io/display-name: sd-kserve
+  serving.knative.openshift.io/enablePassthrough: "true"
+  sidecar.istio.io/inject: "true"
+  sidecar.istio.io/rewriteAppHTTPProbers: "true"
+
+resources:
+- inference-service-kserve.yaml
+
+patches:
+- path: data-connection-patch.yaml
+  target:
+    kind: InferenceService
