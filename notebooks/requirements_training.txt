@@ -1,8 +1,8 @@
 boto3
-torch==2.2.2
+torch==2.4.1
 transformers
 accelerate
 xformers
 bitsandbytes
-ipywidgets
+ipywidgets==8.1.2
 git+https://github.com/huggingface/diffusers
